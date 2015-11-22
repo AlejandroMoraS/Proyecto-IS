@@ -1,0 +1,132 @@
+/*
+ ============================================================================
+ Name        : Proyecto.c
+ Author      : Bryant Gerardo Gonzalez Vizcarra
+ Version     : 1.0.23
+ Copyright   : Your copyright notice
+ Description : Hello World in C, Ansi-style
+ ============================================================================
+ */
+/*A=╔
+ *B=║
+ *C=╚
+ *D=╦
+ *E=═
+ *F=╩
+ *G=╗
+ *H=╝ */
+#include <stdio.h>
+#include <stdlib.h>
+int main(void) {
+	setbuf(stdout, NULL);
+	FILE *Archivo;
+	char Plano[100][100];
+	int E,O;
+	int Li=0;
+	int Fi=0;
+	int i1=0;
+	do{
+		int F=0;
+		E=0;
+		puts("Programa del Administrador");
+		puts("Que Desea Hacer?");
+		puts("1) Crear Plano");
+		puts("2) Leer Plano");
+		puts("3) Programa de Prueba de Funcionamiento");
+		puts("4) Salir");
+		scanf("%d",&F);
+		switch(F){
+			case '1':
+				puts("Ingresa el numero de Lugares por Fila");
+				scanf("%d",&Li);
+				puts("Ingresa el numero de Filas ");
+				scanf("%d",&Fi);
+				int D1=0,D2=1,D3=3;
+				int X1;
+				int Y1;
+				for(i1=0;i1<Fi;i1++){
+					int i2;
+					int ic;
+					Plano[0][D1]='A';
+					Plano[0][D3]='C';
+					for(ic=0;ic<1;ic++){
+						Plano[0][D2]='B';
+						D2++;
+					}
+					int S1=1;
+					int I1=1;
+					for(i2=0;i2<Li;i2++){
+						int L1=D1;
+						int L2=D2-1;
+						int L3=D3;
+						for(ic=0;ic<3;ic++){
+							Plano[S1][D1]='E';
+							S1++;
+						}
+						for(ic=0;ic<3;ic++){
+							Plano[I1][D3]='E';
+							I1++;
+						}
+						Plano[S1+1][L1]='D';
+						Plano[I1+1][L3]='F';
+						for(ic=0;ic<1;ic++){
+							Plano[S1+1][L2]='B';
+							L2++;
+						}
+						S1=S1+2;
+						I1=I1+2;
+					}
+					Plano[S1+1][D1]='G';
+					Plano[I1+1][D3]='H';
+					D1=D1+5;
+					D2=D2+4;
+					D3=D3+5;
+					X1=S1+1;
+					Y1=D1;
+				}
+				int i,e;
+				for(i=0;i<X1;i++){
+					for(e=0;e<Y1;e++){
+						printf("%c",Plano[i][e]);
+					}
+					printf("\n");
+				}
+				Archivo=fopen("Estacionamiento.txt","r+");
+				for(i=0;i<X1;i++){
+					for(e=0;e<Y1;e++){
+						fprintf(Archivo,"%c",Plano[i][e]);
+					}
+					fprintf(Archivo,"\n");
+				}
+				fclose(Archivo);
+				break;
+			case '2':
+			 	Archivo = fopen("Estacionamiento.txt","r");
+
+			 	if (Archivo == NULL)
+			 		break;
+
+			 	printf("\nEl contenido del archivo de prueba es \n\n");
+			 	while (feof(Archivo) == 0)
+			 	{
+			 		fgets(Plano,100,Archivo);
+			 		printf("%s",Plano);
+			 	}
+			 	fclose(Archivo);
+			    break;
+			case '3':
+			case '4':
+				puts("Que tenga un buen dia");
+				return EXIT_SUCCESS;
+				break;
+			default:E=1,printf("Elija una opcion permitida\n");
+		}
+		if(E==0){
+			puts ("Desea seguir en el Programa");
+			puts ("Ingrese 1 para si.");
+			scanf("%i",&O);
+		}
+	}while(O==1);
+	puts("Que tenga un buen dia");
+	return EXIT_SUCCESS;
+}
